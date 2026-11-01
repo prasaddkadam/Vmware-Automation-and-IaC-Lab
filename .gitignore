@@ -1,0 +1,49 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+.terraform.lock.hcl.backup
+crash.log
+crash.*.log
+
+# Credentials / secrets
+.env
+.env.*
+*.pem
+*.key
+*.pfx
+*.p12
+credentials*
+secrets*
+*secret*
+*.vault_pass
+
+# Ansible
+*.retry
+.vault_pass
+
+# Packer
+packer_cache/
+*.box
+
+# PowerShell
+*.clixml
+
+# Logs
+*.log
+logs/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~
