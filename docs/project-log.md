@@ -8,7 +8,6 @@ Establish the physical VMware host and create a stable baseline before deploying
 
 ### Platform
 
-- HP Pro Mini 400 G9
 - Intel Core i5-13500T
 - 32 GB RAM
 - 256 GB NVMe SSD
