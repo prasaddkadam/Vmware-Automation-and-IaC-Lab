@@ -249,6 +249,19 @@ See:
 
 [`docs/troubleshooting.md`](docs/troubleshooting.md)
 
+### ESXi Network Compatibility Investigation
+
+During preparation for the first VM deployment, the Intel I219-LM
+management NIC experienced intermittent connectivity failures under load.
+
+The investigation included ESXi NIC diagnostics, physical network
+isolation, and comparative testing with Ubuntu Live.
+
+Following an HP U23 BIOS update, the previously unsuccessful
+file transfer tests completed successfully.
+
+[Read INC-001 — ESXi Network Instability](docs/incidents/INC-001-esxi-network-instability.md)
+
 ---
 
 ## Design Principles
