@@ -657,7 +657,12 @@ These concepts form the objects that later PowerCLI and Terraform automation wil
 
 # Troubleshooting Summary
 
-Two significant issues were encountered during the platform build.
+Two significant boot-related issues were encountered during the initial
+platform installation. A third incident involving ESXi management
+network instability was investigated and resolved during preparation
+for Stage 2.
+
+See [INC-001 — ESXi Network Instability](../incidents/INC-001-esxi-network-instability.md).
 
 ## Secure Boot Authentication Failure
 
