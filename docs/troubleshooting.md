@@ -63,3 +63,22 @@ ESXi subsequently booted successfully and the kernel setting was verified as dis
 ### Lesson Learned
 
 Enterprise hypervisors may expose hardware-compatibility assumptions that are not normally visible when running consumer operating systems, particularly on newer heterogeneous CPU architectures.
+
+---
+
+## ESXi Management Network Instability — INC-001
+
+**Status:** Resolved — initial validation successful
+
+During preparation for the first VM deployment, the ESXi management
+connection experienced repeated failures under sustained inbound traffic.
+
+Investigation included physical network isolation, NIC statistics,
+kernel log analysis and Ubuntu Live cross-platform testing.
+
+Updating the HP U23 BIOS from 02.15.12 to 02.23.00 was followed by
+successful 100 MB SCP and Ubuntu Server ISO transfers.
+
+The precise underlying defect was not conclusively established.
+
+**Full report:** [INC-001 — ESXi Network Instability](incidents/INC-001-esxi-network-instability.md)
