@@ -95,6 +95,18 @@ The following virtualisation features were confirmed as enabled:
 
 These settings allow ESXi to use the CPU's hardware virtualisation capabilities and provide a foundation for future virtual machines and device virtualisation features.
 
+### Firmware Maintenance
+
+During subsequent network troubleshooting, the HP Pro Mini 400 G9
+BIOS was upgraded from U23 02.15.12 to U23 02.23.00.
+
+The update followed successful cross-OS network testing and
+was performed after securing ESXi configuration recovery material.
+
+Following the update, ESXi booted successfully and the previously
+failing datastore transfer operations completed.
+
+See [INC-001](../incidents/INC-001-esxi-network-instability.md).
 ---
 
 # ESXi Installation
