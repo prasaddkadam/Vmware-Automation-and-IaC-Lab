@@ -102,3 +102,38 @@ allowing Stage 2 VM deployment to proceed.
 ### Next Milestone
 
 Deploy and configure LINUX01.
+
+---
+
+## 2026-11-09 — First Linux VM Manual Deployment
+
+### Objective
+
+Create, configure and validate the first virtual machine as a repeatable manual baseline for subsequent infrastructure automation.
+
+### Implemented
+
+- Built `LINUX01` on standalone ESXi 8.0.3 using 2 vCPU, 2 GB RAM and a 25 GB thin-provisioned VMDK.
+- Attached Ubuntu Server 24.04.5 LTS ISO and configured EFI, PVSCSI, VMXNET3 and the `VM Network` port group.
+- Installed Ubuntu Server with DHCP, LVM, an administrative account and OpenSSH.
+- Completed package updates and verified `open-vm-tools` 13.0.10.0.
+
+### Verification
+
+- Guest boots, logs in and reports hostname `linux01`.
+- SSH works from the Windows management workstation.
+- `open-vm-tools.service` is active.
+- `lsblk` confirms the 25 GB virtual disk and EFI/boot/LVM partitions.
+- No Ubuntu reboot was required following updates.
+
+### Issues and Follow-up
+
+An earlier installation attempt failed during `apt-get update` while the ESXi management uplink was unstable. The first VM was removed and rebuilt, and the second installation completed. Physical NIC stability is still under observation: [INC-001](incidents/INC-001-esxi-network-instability.md).
+
+### Documentation
+
+[Stage 2 — Manual Infrastructure Baseline](stages/02-manual-infrastructure-baseline.md).
+
+### Next Milestone
+
+Develop repeatable host/VM discovery and validation using PowerCLI, while continuing to monitor ESXi physical networking.
