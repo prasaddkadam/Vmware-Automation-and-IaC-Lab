@@ -68,7 +68,7 @@ Enterprise hypervisors may expose hardware-compatibility assumptions that are no
 
 ## ESXi Management Network Instability — INC-001
 
-**Status:** Resolved — initial validation successful
+**Status:** Monitoring — recurring network instability observed
 
 During preparation for the first VM deployment, the ESXi management
 connection experienced repeated failures under sustained inbound traffic.
@@ -79,6 +79,6 @@ kernel log analysis and Ubuntu Live cross-platform testing.
 Updating the HP U23 BIOS from 02.15.12 to 02.23.00 was followed by
 successful 100 MB SCP and Ubuntu Server ISO transfers.
 
-The precise underlying defect was not conclusively established.
+During the first Ubuntu VM installation, ESXi management interruptions recurred and cumulative NIC statistics showed 415 CRC errors and repeated physical link flaps. The HP BIOS **PCI Express Power Management** setting was then disabled for testing. The rebuilt VM subsequently installed successfully, but a durable NIC fix has not yet been demonstrated. The precise underlying defect remains unconfirmed.
 
 **Full report:** [INC-001 — ESXi Network Instability](incidents/INC-001-esxi-network-instability.md)
