@@ -1,7 +1,7 @@
 # INC-001 — ESXi Management Network Instability
 
 **Date:** 8 November 2026  
-**Status:** Resolved — initial validation successful  
+**Status:** Monitoring — recurrence observed following initial BIOS remediation  
 **Affected component:** ESXi management networking (`vmnic0`)  
 **Related stage:** Stage 1 — Platform Foundation / Stage 2 preparation
 
@@ -139,7 +139,13 @@ The following tests succeeded after the firmware update:
 
 The successful transfers demonstrated that the previously reproducible upload failures were no longer occurring in these tests.
 
-Longer-term network stability and post-transfer NIC error counters remain subject to continued monitoring.
+These transfers established only an initial improvement. Subsequent VM installation activity exposed renewed ESXi management outages and physical link-down events. A later NIC sample showed cumulative receive CRC errors of 415, with 348 receive length and 348 receive missed errors. The exact cause remains unresolved.
+
+### Subsequent diagnostic change — PCI Express Power Management
+
+During a further BIOS investigation, the physical host's **PCI Express Power Management** option was disabled as a controlled troubleshooting experiment. The rebuilt `LINUX01` guest then installed and booted successfully, and an ESXi NIC sample showed zero CRC errors and 38 receive length/missed errors since NIC initialisation. One `vmnic0` link-down entry was also present near the maintenance period; its cause was not established. No post-change long-duration stability test has yet confirmed a permanent fix.
+
+**Assessment:** Retain as a provisional mitigation only. Continue to measure CRC/error deltas and new link-down events under load. Do not attribute causality solely to PCIe power management.
 
 ## 8. Lessons Learned
 
@@ -155,7 +161,7 @@ Longer-term network stability and post-transfer NIC error counters remain subjec
 
 The ESXi management connection successfully supported the transfers needed for VM deployment.
 
-The Ubuntu Server ISO was uploaded to the datastore, removing the immediate blocker to Stage 2 — Manual Infrastructure Baseline.
+The Ubuntu Server ISO was uploaded to the datastore, and the rebuilt `LINUX01` subsequently passed guest login, SSH, package-update and VMware Tools verification. The initial deployment milestone is complete, but host network stability remains an open operational risk.
 
 ## 10. Follow-up
 
