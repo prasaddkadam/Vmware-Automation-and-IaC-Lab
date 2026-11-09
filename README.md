@@ -134,7 +134,7 @@ The detailed learning roadmap is condensed into seven implementation stages for 
 | Stage | Focus | Status |
 |---|---|---|
 | **1. Platform Foundation** | Hardware, ESXi, networking, storage and VMware fundamentals | ✅ Complete |
-| **2. Manual Infrastructure Baseline** | First VM and manual deployment workflow | 🔜 Next |
+| **2. Manual Infrastructure Baseline** | First VM and manual deployment workflow | ✅ First VM verified |
 | **3. PowerCLI & API Automation** | VMware automation using PowerShell and PowerCLI | Planned |
 | **4. Infrastructure as Code** | Terraform and declarative infrastructure provisioning | Planned |
 | **5. Standardised Deployment** | Templates, unattended installation and Packer | Planned |
@@ -258,7 +258,9 @@ The investigation included ESXi NIC diagnostics, physical network
 isolation, and comparative testing with Ubuntu Live.
 
 Following an HP U23 BIOS update, the previously unsuccessful
-file transfer tests completed successfully.
+file transfer tests completed, but network interruptions recurred during
+the first Ubuntu VM installation. PCI Express Power Management was subsequently
+disabled for evaluation; permanent resolution remains unconfirmed.
 
 [Read INC-001 — ESXi Network Instability](docs/incidents/INC-001-esxi-network-instability.md)
 
@@ -338,9 +340,11 @@ Current structure:
     ├── design-decisions.md
     ├── project-log.md
     ├── troubleshooting.md
-    │
+    ├── incidents/
+    │   └── INC-001-esxi-network-instability.md
     └── stages/
-        └── 01-platform-foundation.md
+        ├── 01-platform-foundation.md
+        └── 02-manual-infrastructure-baseline.md
 ```
 
 Future directories will be added as their corresponding technologies are introduced:
@@ -452,24 +456,13 @@ Complete.
 
 The ESXi host is installed, networked, time-synchronised, remotely manageable and validated.
 
-### 🔜 Stage 2 — Manual Infrastructure Baseline
+### ✅ Stage 2 — Manual Infrastructure Baseline (First VM)
 
-The next milestone is to create the first VM manually and document:
+`LINUX01` is running Ubuntu Server 24.04.5 LTS with 2 vCPU, 2 GB RAM, a 25 GB thin-provisioned VMDK, VMXNET3, EFI and LVM. Guest login, SSH, package updates and `open-vm-tools` were verified.
 
-- VM name
-- Guest OS
-- vCPU
-- Memory
-- Datastore
-- VMDK configuration
-- Thin provisioning
-- Virtual NIC
-- Port group
-- Firmware
-- ISO attachment
-- VMware Tools
+[Stage 2 deployment record](docs/stages/02-manual-infrastructure-baseline.md) includes the manual build parameters, validation evidence and Automation Candidate List.
 
-Every manual step will then be added to an **Automation Candidate List** for the later PowerCLI stage.
+**Operational follow-up:** The Intel I219-LM management NIC remains under observation following recurring link failures ([INC-001](docs/incidents/INC-001-esxi-network-instability.md)).
 
 ---
 
